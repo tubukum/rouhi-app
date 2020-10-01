@@ -1,0 +1,10 @@
+<h1>商品登録ページ</h1>
+
+<%= form_with(model: @thing, local: true) do |f| %>
+  <%= f.label :name, 'メッセージ' %>
+  <%= f.text_field :name %>
+
+  <%= f.submit '完了' %>
+<% end %>
+
+<%= link_to '一覧に戻る', things_path %>

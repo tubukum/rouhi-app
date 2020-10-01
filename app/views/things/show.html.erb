@@ -1,0 +1,5 @@
+<p><%= @thing.name %></p>
+
+<%= link_to '一覧に戻る', things_path %>
+<%= link_to '編集', edit_thing_path(@thing) %>
+<%= link_to '消去', @thing, method: :delete, data: {confirm: '本当に削除してもよろしいですか'} %>

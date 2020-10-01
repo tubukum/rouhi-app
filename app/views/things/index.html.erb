@@ -1,0 +1,9 @@
+<h1>浪費一覧</h1>
+
+<ul>
+    <% @things.each do |thing| %>
+    <li><%= link_to thing.id, thing %> : <%= thing.name %></li>
+    <% end %>
+</ul>
+
+<%= link_to '商品登録', new_thing_path %>
