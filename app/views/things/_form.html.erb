@@ -1,0 +1,6 @@
+<%= form_with(model: thing, local: true) do |f| %>
+  <%= f.label :name, '商品名' %>
+  <%= f.text_field :name %>
+
+  <%= f.submit '投稿' %>
+<% end %>

@@ -1,10 +1,11 @@
 class ThingsController < ApplicationController
+  
   def index
     @things = Thing.all
   end
   
   def show
-    @thing = Thing.find(params[:id])
+    set_thing
   end
   
   def new
@@ -24,12 +25,11 @@ class ThingsController < ApplicationController
   end
   
   def edit
-    @thing = Thing.find(params[:id])
+    set_thing
   end
   
   def update
-    @thing = Thing.find(params[:id])
-    
+    set_thing
     if @thing.update(thing_params)
       flash[:success] = '商品が編集されました。'
       redirect_to @thing
@@ -40,11 +40,17 @@ class ThingsController < ApplicationController
   end
   
   def destroy
-    @thing = Thing.find(params[:id])
+    
     @thing.destroy
     
     flash[:success] = '商品を消去しました。'
     redirect_to things_url
+  end
+  
+  private
+  
+  def set_thing
+    @thing = Thing.find(params[:id])
   end
   
   def thing_params

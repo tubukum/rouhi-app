@@ -1,12 +1,6 @@
 <h1>商品編集ペーシ</h1>
 
-<%= form_with(model: @thing, local: true) do |f| %>
-  <%= f.label :name, '商品名' %>
-  <%= f.text_field :name %>
-  
-  <%= f.submit '完了' %>
- 
-<% end %>
+<%= render 'form', thing: @thing %>
 
 <%= link_to '一覧に戻る', things_path %>
     
