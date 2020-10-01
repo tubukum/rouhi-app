@@ -2,7 +2,7 @@
 
 <ul>
     <% @things.each do |thing| %>
-    <li><%= link_to thing.id, thing %> : <%= thing.name %></li>
+    <li><%= link_to thing.id, thing %> : <%= thing.name %>　<%= thing.date %></li>
     <% end %>
 </ul>
 

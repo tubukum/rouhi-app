@@ -40,7 +40,7 @@ class ThingsController < ApplicationController
   end
   
   def destroy
-    
+    set_thing
     @thing.destroy
     
     flash[:success] = '商品を消去しました。'
@@ -54,6 +54,6 @@ class ThingsController < ApplicationController
   end
   
   def thing_params
-    params.require(:thing).permit(:name)
+    params.require(:thing).permit(:name, :lowpeice, :highprice, :date)
   end
 end
