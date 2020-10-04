@@ -1,4 +1,9 @@
-<p><%= @thing.name %><%= @thing.date %></p>
+<p><%= @thing.name %><%= @thing.date %>
+  <% if @thing.shop == 'super' %>
+    スーパー<%= @thing.lowprice %>
+  <% else %>
+    コンビニ<%= @thing.highprice %>
+  <% end %></p>
 
 <%= link_to '一覧に戻る', things_path %>
 <%= link_to '編集', edit_thing_path(@thing) %>

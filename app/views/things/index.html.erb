@@ -1,9 +1,24 @@
 <h1>浪費一覧</h1>
 
+
 <ul>
     <% @things.each do |thing| %>
-    <li><%= link_to thing.id, thing %> : <%= thing.name %>　<%= thing.date %></li>
-    <% end %>
+    <li><%= link_to thing.id, thing %>  <%= thing.name %>  <%= thing.date %> 
+      <% if thing.shop == 'super' %>
+        スーパー<%= thing.lowprice %>
+      <% else %>
+        コンビニ<%= thing.highprice %>
+      <% end %>
+    <% end %></li>
 </ul>
+
+
+<h2>スーパーの合計とコンビニの合計</h2>
+
+
+<p>スーパー合計: <%= @super_things.sum(:lowprice) %></p>
+<p>コンビニ合計: <%= @conveni_things.sum(:highprice) %></p>
+
+
 
 <%= link_to '商品登録', new_thing_path %>

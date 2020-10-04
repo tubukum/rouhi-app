@@ -5,7 +5,7 @@ class CreateThings < ActiveRecord::Migration[5.2]
       t.integer :lowprice
       t.integer :highprice
       t.date :date
-      t.boolean :shop
+      t.string :shop
 
       t.timestamps
     end

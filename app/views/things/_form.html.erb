@@ -2,8 +2,18 @@
   <%= f.label :name, '商品名' %>
   <%= f.text_field :name %>
   
+  <%= f.label :price, '値段' %>
+  <%= f.text_field :price %>
+  
   <%= f.label :date, '日付' %>
   <%= f.date_select :date %>
+  
+
+  <%= f.radio_button :shop, :super %>
+  <%= f.label :shop, "スーパー", {value: :super, style: "display: inline-block;"} %>
+  <%= f.radio_button :shop, :conveni %>
+  <%= f.label :shop, "コンビニ", {value: :conveni, style: "display: inline-block;"} %>
+
 
   <%= f.submit '投稿' %>
 <% end %>
