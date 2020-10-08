@@ -1,8 +1,8 @@
 <p><%= @thing.name %><%= @thing.date %>
   <% if @thing.shop == 'super' %>
-    スーパー<%= @thing.lowprice %>
+    スーパー<%= @thing.lowprice %>円
   <% else %>
-    コンビニ<%= @thing.highprice %>
+    コンビニ<%= @thing.highprice %>円
   <% end %></p>
 
 <%= link_to '一覧に戻る', things_path %>

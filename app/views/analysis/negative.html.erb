@@ -1,0 +1,9 @@
+<p>もしコンビニで買ったものをスーパーで買っていたら</p>
+<p>合計<%= @conveni_things.sum(:lowprice) %>円でした。</p>
+
+<p>コンビニで購入した金額が<%= @conveni_things.sum(:highprice) %> 円だったので</p>
+<p>あなたは<%= @conveni_things.sum(:highprice) - @conveni_things.sum(:lowprice) %>円損しました。</p>
+<p>コンビニはなるべく使わないようにしましょう。</p>
+
+<%= link_to '戻る', analysis_index_path %>
+<%= link_to '浪費一覧', things_path %>

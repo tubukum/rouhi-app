@@ -1,0 +1,11 @@
+<p>もしスーパーで買ったものをコンビニで買っていたら</p>
+
+<p>合計<%= @super_things.sum(:highprice) %>円でした。</p>　
+
+<p>スーパーで購入した合計金額が<%= @super_things.sum(:lowprice) %> 円だったので</p>
+
+<p><%= @super_things.sum(:highprice) - @super_things.sum(:lowprice) %>円の節約に成功しました！！</p>
+<p>このまま頑張りましょう！</p>
+
+<%= link_to '戻る', analysis_index_path %>
+<%= link_to '浪費一覧', things_path %>

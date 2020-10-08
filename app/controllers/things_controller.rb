@@ -1,4 +1,7 @@
 class ThingsController < ApplicationController
+  before_action :require_user_logged_in
+  before_action :set_thing, only: [:show, :edit, :update, :destroy]
+  
   
   def index
     @things = Thing.all
@@ -7,7 +10,6 @@ class ThingsController < ApplicationController
   end
   
   def show
-    set_thing
   end
   
   def new
@@ -26,12 +28,10 @@ class ThingsController < ApplicationController
   end
   
   def edit
-    set_thing
   end
   
   def update
-    set_thing
-    if @thing.update(thing_params)
+    if @thing.update(adjust_attributes)
       flash[:success] = '商品が編集されました。'
       redirect_to @thing
     else
@@ -41,13 +41,12 @@ class ThingsController < ApplicationController
   end
   
   def destroy
-    set_thing
     @thing.destroy
     
     flash[:success] = '商品を消去しました。'
     redirect_to things_url
   end
-  
+
   private
   
   def set_thing
@@ -65,19 +64,20 @@ class ThingsController < ApplicationController
       # lowprice に price の内容そのまま、highprice に加工した値段をセット
       # attrs の lowprice キーに price の値を入れる
       attrs[:lowprice] = attrs[:price].to_i
-      # attrs の highprice キーに price * 1.2 の値を入れる
-      attrs[:highprice] = attrs[:price].to_i*1.2
+      # attrs の highprice キーに price * 1.3 の値を入れる
+      attrs[:highprice] = attrs[:price].to_i*1.3
     else
       # highprice に price の内容そのまま、lowprice に加工した値段をセット
       # 上記の逆パターン
       attrs[:highprice] = attrs[:price].to_i
-      attrs[:lowprice] = 0.8*attrs[:price].to_i*0.8
+      attrs[:lowprice] = attrs[:price].to_i*0.7
     end
     # attrs から :price キーを削除
     attrs.delete(:price)
     # 戻り値の希望
     return attrs
     # {name: '名前', lowprice: "1000", highprice: "1200", date: "2020-10-1", shop: "super"}
-  
   end
+  
+  
 end
