@@ -1,12 +1,12 @@
 class ThingsController < ApplicationController
   before_action :require_user_logged_in
   before_action :set_thing, only: [:show, :edit, :update, :destroy]
-  
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
   
   def index
-    @things = Thing.all
-    @super_things = Thing.where(shop: 'super')
-    @conveni_things = Thing.where(shop: 'conveni')
+    @things = current_user.things
+    @super_things = @things.where(shop: 'super')
+    @conveni_things = @things.where(shop: 'conveni')
   end
   
   def show
@@ -17,7 +17,7 @@ class ThingsController < ApplicationController
   end
   
   def create
-    @thing = Thing.new(adjust_attributes)
+    @thing = current_user.things.build(adjust_attributes)
     if @thing.save
       flash[:success] = '記録完了！'
       redirect_to @thing
@@ -60,6 +60,8 @@ class ThingsController < ApplicationController
   def adjust_attributes
     attrs = thing_params
     
+    # attrs[:price].present? +> false なら弾く
+    
     if attrs[:shop] == 'super'
       # lowprice に price の内容そのまま、highprice に加工した値段をセット
       # attrs の lowprice キーに price の値を入れる
@@ -77,6 +79,13 @@ class ThingsController < ApplicationController
     # 戻り値の希望
     return attrs
     # {name: '名前', lowprice: "1000", highprice: "1200", date: "2020-10-1", shop: "super"}
+  end
+  
+  def correct_user
+    @thing = current_user.things.find_by(id: params[:id])
+    unless @thing
+      redirect_to root_url
+    end
   end
   
   

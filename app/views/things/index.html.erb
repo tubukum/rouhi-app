@@ -2,7 +2,7 @@
 
 <ul>
     <% @things.each do |thing| %>
-    <li><%= link_to thing.id, thing %>  <%= thing.name %>  <%= thing.date %> 
+    <li><%= thing.date %> <%= link_to thing.name, thing %>
       <% if thing.shop == 'super' %>
         スーパー<%= thing.lowprice %>円
       <% else %>
@@ -17,10 +17,3 @@
 
 <p>スーパー合計: <%= @super_things.sum(:lowprice) %>円</p>
 <p>コンビニ合計: <%= @conveni_things.sum(:highprice) %>円</p>
-
-
-
-<p>ナビゲーションバーたち</p>
-<%= link_to '分析ページ', analysis_index_path %>
-<%= link_to '商品登録', new_thing_path %>
-<%= link_to 'Logout', logout_path, method: :delete %></li>

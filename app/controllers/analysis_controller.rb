@@ -1,5 +1,6 @@
 class AnalysisController < ApplicationController
   before_action :classed_things, only: [:positive, :negative]
+
   
   def index
   end
@@ -13,9 +14,9 @@ class AnalysisController < ApplicationController
   private
   
   def classed_things
-    @things = Thing.all
-    @super_things = Thing.where(shop: 'super')
-    @conveni_things = Thing.where(shop: 'conveni')
+    @things = current_user.things
+    @super_things = @things.where(shop: 'super')
+    @conveni_things = @things.where(shop: 'conveni')
   end
   
 end
