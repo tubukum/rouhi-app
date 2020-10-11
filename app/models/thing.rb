@@ -7,4 +7,12 @@ class Thing < ApplicationRecord
     validates :highprice, presence: true
     validates :lowprice, presence: true
     
+    def save_price
+        if self.shop == "super"
+            self.lowprice
+        else
+            self.highprice
+        end
+    end
+    
 end

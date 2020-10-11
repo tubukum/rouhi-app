@@ -1,9 +1,24 @@
 <%= form_with(model: thing, local: true) do |f| %>
+<% if thing.errors.any? %>
+  <div id="error_explanation">
+   <ul>
+    <% thing.errors.full_messages.each do |msg| %>
+     <li><%= msg %></li>
+    <% end %>
+   </ul>
+  </div>
+<% end %>
   <%= f.label :name, '商品名' %>
   <%= f.text_field :name %>
   
   <%= f.label :price, '値段' %>
-  <%= f.text_field :price %>
+  <% if action_name == "new" %>
+    <%= f.number_field :price, step: 1, value: 0 %>
+  <% elsif action_name == "edit" || action_name == "update" %>
+    <%= f.number_field :price, step: 1, value: f.object.save_price %>
+  <% elsif action_name == "create" %>
+    <%= f.number_field :price, step: 1, value: params[:thing][:price] %>
+  <% end %>
   
   <%= f.label :date, '日付' %>
   <%= f.date_select :date %>

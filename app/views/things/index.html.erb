@@ -1,16 +1,25 @@
 <h1>浪費一覧</h1>
-
-<ul>
+<table class="table">
+  <tr>
+    <th class="text-center">商品名</th>
+    <th class="text-center">日付</th>
+    <th class="text-center">お店</th>
+    <th class="text-center">値段</th>
+  </tr>
     <% @things.each do |thing| %>
-    <li><%= thing.date %> <%= link_to thing.name, thing %>
-      <% if thing.shop == 'super' %>
-        スーパー<%= thing.lowprice %>円
-      <% else %>
-        コンビニ<%= thing.highprice %>円
-      <% end %>
-    <% end %></li>
-</ul>
-
+    <tr>
+  　   <td><%= thing.name %></td>
+      <td class="text-right"><%= thing.date %></td>
+    　  <% if thing.shop == 'super' %>
+       　<td class="text-right">スーパー</td>
+       　<td class="text-right"><%= thing.lowprice %>円</td>
+      　<% else %>
+      　 <td class="text-right">コンビニ</td>
+    　  　<td class="text-right"><%= thing.highprice %>円</td>
+    　  <% end %>
+  　<% end %>
+　</tr>
+</table>
 
 <h2>スーパーの合計とコンビニの合計</h2>
 

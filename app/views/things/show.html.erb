@@ -1,9 +1,22 @@
-<p><%= @thing.name %><%= @thing.date %>
-  <% if @thing.shop == 'super' %>
-    スーパー<%= @thing.lowprice %>円
-  <% else %>
-    コンビニ<%= @thing.highprice %>円
-  <% end %></p>
+<table class="table">
+  <tr>
+    <th class="text-center">商品名</th>
+    <th class="text-center">日付</th>
+    <th class="text-center">お店</th>
+    <th class="text-center">値段</th>
+  </tr>
+  <tr>
+  　<td><%= @thing.name %></td>
+    <td class="text-right"><%= @thing.date %></td>
+    　<% if @thing.shop == 'super' %>
+     　<td class="text-right">スーパー</td>
+     　<td class="text-right"><%= @thing.lowprice %>円</td>
+    　<% else %>
+    　　<td class="text-right">コンビニ</td>
+    　　<td class="text-right"><%= @thing.highprice %>円</td>
+  　　<% end %>
+　</tr>
+</table>
 
 <%= link_to '一覧に戻る', things_path %>
 <%= link_to '編集', edit_thing_path(@thing) %>
