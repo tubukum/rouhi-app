@@ -8,7 +8,7 @@
   </tr>
     <% @things.each do |thing| %>
     <tr>
-  　   <td><%= thing.name %></td>
+  　   <td><%= link_to thing.name, thing %></td>
       <td class="text-right"><%= thing.date %></td>
     　  <% if thing.shop == 'super' %>
        　<td class="text-right">スーパー</td>
